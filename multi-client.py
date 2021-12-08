@@ -5,7 +5,6 @@ import time
 import sys
 from datetime import datetime
 
-#umesh
 
 def writing():
     while True:
