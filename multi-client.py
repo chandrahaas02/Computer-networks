@@ -1,6 +1,6 @@
 from _thread import *
 import threading
-import socket
+import socket # import socket
 import time
 import sys
 from datetime import datetime
