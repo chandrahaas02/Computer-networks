@@ -7,6 +7,7 @@ from datetime import datetime
 import os 
 
 
+
 def writing():
     while True:
         msg=c_socket.recv(1024)
