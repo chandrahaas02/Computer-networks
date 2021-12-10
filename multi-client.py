@@ -7,16 +7,18 @@ from datetime import datetime
 import os 
 
 
-
 def writing():
     while True:
         msg=c_socket.recv(1024)
         msg=msg.decode()
         if msg[:4]=="file":
-            f = open("output.txt","w")
-            f.write(msg[4:])
+            div=msg.index(",")
+            filename =msg[4:div]
+            # print(filename)
+            f = open(filename,"w")
+            f.write(msg[div+1:])
             f.close()
-            print("A file was send")
+            print("file was recieved")
         else:
             print(msg)
 
@@ -34,7 +36,7 @@ if __name__ == '__main__':
     c_socket.sendall(name.encode())
     server_name = c_socket.recv(1024)
     server_name = server_name.decode()
-    print('Connected with ',server_name)
+    print('Connected with',server_name)
     message = "get_list"
     c_socket.sendall(message.encode())
     start_new_thread(writing,())
@@ -43,14 +45,15 @@ if __name__ == '__main__':
         if message == "file" :
             recieve=input("Enter the names of recivers with space : ")
             file = input("Enter the path to the file here : ")
+            filename = os.path.basename(file)
             f = open(file,'r')
             message = f.read()
-            message= "file"+ " "+recieve+" "+":"+" "+ message
+            message= "file"+ " "+recieve+" "+":"+" "+filename+","+ message
         c_socket.sendall(message.encode())
         if message =='quit':
             break
         c_socket.send(message.encode())
-        data = c_socket.recv(1024) 
+        data = c_socket.recv(1024)
         
     c_socket.close()
 
