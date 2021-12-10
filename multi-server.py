@@ -40,7 +40,6 @@ def threaded(conn,name):
                     connec.send(msg.encode())
                     list_of_c.remove(names)
         elif command[0]=="file":
-            print(command[1])
             div=command.index(":")
             list_of_c=command[1:div]
             msg="file"+" ".join(command[div+1:])
@@ -61,14 +60,14 @@ if __name__ == '__main__':
     print("IP of server :",s_ip)
     name = input('Enter name of Server:')
     s_soc.listen(MAX_CLIENTS)
-    print("In Listen mode..")
+    print("In Listen mode....")
 
 
     while True:
         conn, add = s_soc.accept() # accepting connection  
         c_message = conn.recv(1024)
         name_of_client=c_message.decode()
-        msg="Welcome your friend "+ name_of_client+ " to the  party"
+        msg="Welcome your friend "+ name_of_client+ " to the party"
         msg=msg.encode()
         for (name,conect) in client_list :
             conect.send(msg)
