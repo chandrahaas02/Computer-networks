@@ -1,5 +1,5 @@
 # Computer-networks (CS 3530)
-## change password : Before a getting connection with a client. The client gets three chances to enter the appropriate password, if failed to do so then the client cant get connected to the server.
+## change password : In order to get a connection between the server and client. A client gets three chances to enter the appropriate password, if failed to do so then the client cant get connected to the server.
 ## get_list : We use get_list command for printing all users on servers.
 ## send all : We use send all command for sending message to all clients available in the room and the one of the example,If user "i" send message then output as follows i : user i: msg
 ## send command : We use send command for sending message to specific users, example send user1 user2 user3 user4 : msg then user1 user2 user3 user4 will recieve the msg.
