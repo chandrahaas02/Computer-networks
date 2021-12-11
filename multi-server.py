@@ -47,8 +47,6 @@ def threaded(conn, name, addr):
     while True:
         if key == 0:
             break
-        else:
-            print("Clients available are: " + " ".join(client_names))
         message = conn.recv(1024)
         if not message:
             print(name + " connection closed")
