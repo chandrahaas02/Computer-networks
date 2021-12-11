@@ -58,23 +58,23 @@ if __name__ == '__main__':
     port = 9992
     s_soc.bind((s_ip,port)) #binding host to port
     print("IP of server :",s_ip)
-    name = input('Enter name of Server:')
+    s_name = input('Enter name of Server:')
     s_soc.listen(MAX_CLIENTS)
-    print("In Listen mode....")
+    print("In Listen mode..")
 
 
     while True:
         conn, add = s_soc.accept() # accepting connection  
         c_message = conn.recv(1024)
         name_of_client=c_message.decode()
-        msg="Welcome your friend "+ name_of_client+ " to the party"
+        msg="Welcome your friend "+ name_of_client+ " to the  party"
         msg=msg.encode()
         for (name,conect) in client_list :
             conect.send(msg)
         print("Name of client: ",name_of_client)
         client_list.append((name_of_client,conn))
         client_names.append(name_of_client)
-        conn.send(name.encode())
+        conn.send(s_name.encode())
         start_new_thread(threaded, (conn,name_of_client))
     s_soc.close()
 
